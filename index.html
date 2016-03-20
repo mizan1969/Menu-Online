@@ -1,0 +1,885 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>taste of raj | Palmers Green</title>
+
+<link rel="stylesheet" href="css/styles.css" />
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+ -->
+<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+<script src="myScript.js" type="text/javascript" ></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+
+
+
+
+});
+</script>
+
+<script type="text/javascript">
+$(function() {
+ // div hide / show
+  $('#miz').on('click',function(){
+  	$(this).next('.msg_body_right').slideToggle();
+  });
+  
+  var my_no= 1234567890;
+
+}); // end doc
+</script>
+
+<style type="text/css">
+.remove_item { cursor:pointer }
+input { width:20px; }
+td.hidden_price { display:none }
+
+/*  customer info cash  */
+#customer_info_cash { 
+	position:fixed;
+	display:none;
+	width:450px;
+	padding:15px 15px 15px 50px;
+	background:#ccc;
+	z-index:100;
+	border-radius:10px;
+}
+#customer_info_cash label { width:120px; float:left }
+#customer_info_cash input[type=text] { width:280px; border-radius:5px;}
+#customer_info_cash textarea { width:280px; height:50px }
+
+/* customer info card  */
+#customer_info_card { 
+	position:fixed;
+	display:none;
+	width:850px;
+	padding:15px 15px 15px 50px;
+	background:#ccc;
+	z-index:100;
+	border-radius:10px;
+}
+#customer_info_card label { width:120px; float:left }
+#customer_info_card input[type=text] { width:230px; border-radius:5px; float:left; margin:0px 30px 10px 0px;}
+#customer_info_card input[class=name] { width:230px; border-radius:5px; float:left; margin:0px 30px 10px 0px;}
+#customer_info_card textarea { width:280px; height:50px ; float:left}
+.clear_both { clear:both }
+
+
+/* button close  */
+.button_close {
+	border-radius:7px;
+	border:2px outset #aaa;
+	width:80px;
+	height:20px;
+	text-align:center;
+	padding-top:8px;
+	float:right;
+	background:#bbb;
+	cursor:pointer;
+	position:relative;
+	top:0px;
+	font:bold 12px tahoma;
+
+}
+.button_close:hover { border:1px outset #aaa;}
+
+/* submit order  */
+#submit_order { 
+	width:100px; 
+	height:29px; 
+	text-align:center; 
+	width:172px; 
+	height:47px; 
+	padding:0px;
+	border:0px;
+	margin-left:160px;
+	cursor:pointer;
+	outline:none;
+	background:url(image/submit-button.png) top left no-repeat ;
+}
+
+/* submit order card */
+#submit_order_card { 
+	width:100px; 
+	height:29px; 
+	text-align:center; 
+	width:172px; 
+	height:47px; 
+	padding:0px;
+	border:0px;
+	margin-left:300px;
+	cursor:pointer;
+	outline:none;
+	background:url(image/submit-button.png) top left no-repeat ;
+}
+
+#background { position:fixed; width:100%; height:100% ; }
+
+</style>
+
+
+
+</head>
+
+<body>
+<div id="background"></div>
+
+<!-- customer for cash -->
+<div id="customer_info_cash">
+<div class="button_close">CLOSE</div>
+    <h2> Your details :</h2>
+    <form id="order-cash" name="order-cash" action="" method="post" >
+        <p> <label>First name: </label><input id="fname" name="fname" type="text"  /></p>
+        <p> <label>Last name: </label><input id="lname" name="lname" type="text"  /></p>
+        <p> <label>Email: </label><input id="email" name="email" type="text"  /></p>
+        <p><label> Contact No:</label> <input id="phone" type="text" value="" name="phone" title="please specify both mobile and home number"/></p>
+        <p> <label>Address: </label><input id="address1" name="address1" type="text"  /></p>
+        <p> <label>&nbsp; </label><input id="address2" name="address2" type="text"  /></p>
+        <p> <label>&nbsp; </label><input id="address3" name="address3" type="text"  /></p>
+        <p><label>&nbsp;</label><span style="font-size:11px"> Minimum time: For collection 15 mins / For delivery 45 mins </span></p>
+         <p><label>collection/delivery time :</label> <input type="text" id="collection_time" name="collection_time" /></p>
+    
+        <p><label> Comment :</label><textarea id="message" name="msg" onclick="this.value=''" >if you have any alergy please specify here... </textarea></p>
+        <br />
+        
+        <button id="submit_order"></button>
+	</form>
+</div>
+
+
+    	
+<div id="main">
+
+<!-- header begins -->
+<div id="header">
+    
+  <div id="logo" > Online Order System - Demo Site</div>
+        
+
+</div> <!--header -->
+
+      
+
+  <div id="content">    <!-- content begins -->
+  
+  
+  <div id="contentcontainer">
+  
+
+ 
+	<!-- ORDER DISPLAY COLUMN -->
+     <div id="order_display_wrap"> 	
+        	<div id="order_display1">
+                  <p id="miz" class="msg_head_right"><span class="hoover">&nbsp;&nbsp;&nbsp;Ordering for : COLLECTION</span><span id="div_hide">+/-</span></p>
+                  <div class="msg_body_right">
+                      
+                      <dl><dt>Collection time :</dt><dd>20 mins</dd></dl>
+                      <dl><dt>Minimum order :</dt><dd>£0.00</dd></dl>
+                      <dl><dt>Shop Address&nbsp;&nbsp;:</dt><dd>76 Aldermans Hill</dd></dl>
+                      <dl><dt>&nbsp;&nbsp;</dt><dd>Palmers Green</dd></dl>
+                      <dl><dt>&nbsp;&nbsp;</dt><dd>N13 4PP</dd></dl>
+                      
+             		</div>
+               </div>
+            
+              <div id="order_display2">
+                      <p class="msg_head_right"><span class="hoover">&nbsp;&nbsp;&nbsp;Your Order :</span></p>
+                      <div class="msg_body_right2">
+                      
+                        <table id="add_item" width="289" border="0" cellspacing="0" cellpadding="0">
+                          <tr class="head" height="30" bgcolor="#C0C0C0">
+                           
+                            <th width="160" align="left">&nbsp;&nbsp;&nbsp;&nbsp;Product</th>
+                            <th width="50" scope="col" align="left">Qty&nbsp;&nbsp;&nbsp;</th>
+                            <th width="30" scope="col">Price</th>
+                            <th width="20" scope="col">&nbsp;</th>
+                          
+                          </tr>
+                        </table>
+                        
+                        <hr />
+                       <table  width="265" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td width="235" align="left">&nbsp;Subtotal</td>
+                            <td align="left" width="30">&nbsp;£<span id="subtotal">0.00</span></td>
+                          </tr>
+                          <tr>
+                            <td style="font:12px tahoma">&nbsp;10% discount</td>
+                            <td style="font:12px tahoma; text-align:right;">-£<span id="discount">0.00</span></td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;Total</td>
+                            <td style="text-align:right;">£<span id="total">0.00</span></td>
+                          </tr>
+                        </table>
+                        <hr />
+                        <form id="order_form">
+                        <p align="center"> 
+                         
+                        	Pay by Cash<input type="radio" name="payment_method" value="pay_cash" checked="checked"  />
+                             Pay by Card<input type="radio" name="payment_method" value="pay_card"  />
+                         </p>
+                         <p align="center">  
+                        	Collection<input class="order_method" type="radio" name="order_method" value="collection" checked="checked"  />
+                             Delivery<input class="order_method" type="radio" name="order_method" value="delivery"  />
+                         </p>
+                        
+				<hr />
+               <input style="margin-left:45px; margin-bottom:5px;width:auto;" type="button" id="empty_order" value="Empty Order"  /> <input style="width:auto;" type="button" id="checkout" value="Checkout"  />
+                 </form>
+               		  </div><br />
+                      
+                      <div>   <img src="image/card.jpg" width="290"  />  </div> 
+              </div>
+		</div>  
+       <!-- end of order display -->
+       
+        <div id="menu"> 
+       
+      <p class="msg_head"><span class="hoover">STARTERS</span><span class="hoover" style="margin-right:25px; float:right;">STARTERS</span></p>
+      
+      <div class="msg_body" style="height:350px;">
+      
+   <table width="320" border="0" cellspacing="0" id="menu2" style="margin-left:10px; float:left;">
+    <tr>
+      <td width="270"></td>
+      <td width="20">&nbsp;</td>
+     
+      <td width="30"></td>
+    </tr>
+    <tr>
+      <td>Prawn Cocktail</td>
+      <td>&pound;2.50</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="Prawn Cocktail" value="2.50" /></td>
+    </tr>
+    <tr>
+      <td>Prawn Puri</td>
+      <td>&pound;2.95</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="Prawn Puri" value="2.95" /></td>
+    </tr>
+    <tr>
+      <td>King Prawn Butterfly</td>
+      <td>&pound;4.95</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="King Prawn Butterfly" value="4.95" /></td>
+    </tr>
+    <tr>
+      <td class="style1">Dellicately spiced king prawn fried <br /> in clarified butter</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Sheek Kabab</td>
+      <td>&pound;2.95</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="Sheek Kabab" value="2.95" /></td>
+    </tr>
+    <tr>
+      <td>Shami Kabab</td>
+      <td>&pound;2.95</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="Shami Kabab" value="2.95" /></td>
+    </tr>
+    <tr>
+      <td>Raj Kabab</td>
+      <td>&pound;2.95</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="Raj kabab" value="2.95" /></td>
+    </tr>
+    <tr>
+      <td>Samosa (meat or veg)</td>
+      <td>&pound;2.50</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="Samosa" value="2.50" /></td>
+    </tr>
+    <tr>
+      <td class="style1">Triangular sized spicy pie with mince meat or <br /> vegetable, fried in deep oil</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+ </table>
+ 
+       <table width="300" border="0" cellspacing="0" id="menu2" style="margin-right:5px; float:right;">
+    <tr>
+      <td width="250"></td>
+      <td width="20">&nbsp;</td>
+     
+      <td width="30">&nbsp;</td>
+    </tr>
+ 
+    <tr>
+      <td>Chicken Tikka</td>
+      <td>&pound;2.95</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken Tikka" value="2.95" /></td>
+    </tr>
+    <tr>
+      <td>Tandoori Chicken (quarter)</td>
+      <td>&pound;2.95</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="Tandoori Chicken(quarter)" value="2.95" /></td>
+    </tr>
+    <tr>
+      <td>Chicken Chat </td>
+      <td>&pound;2.95</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken Chat" value="2.95" /></td>
+    </tr>
+    <tr>
+      <td>Lamb Tikka</td>
+      <td>&pound;2.95</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="Lamb Tikka" value="2.95" /></td>
+    </tr>
+    <tr>
+      <td height="25">Onion Bhaji</td>
+      <td>&pound;2.50</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="Onion Bhaji" value="2.50" /></td>
+    </tr>
+    <tr>
+      <td>Aloo Chat</td>
+      <td>&pound;2.50</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="Aloo Chat" value="2.50" /></td>
+    </tr>
+    <tr>
+      <td>Soup (dal)</td>
+      <td>&pound;2.50</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="Soup(dal)" value="2.50" /></td>
+    </tr>
+    <tr>
+      <td>Dal Puri</td>
+      <td>&pound;2.50</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="Dal Puri" value="2.50" /></td>
+    </tr>
+    <tr>
+      <td>King Prawn Puri</td>
+      <td>&pound;4.95</td>
+      <td><input class="add_order" type="image" src="image/btn-add.png" alt="King Prawn Puri" value="4.95" /></td>
+    </tr>
+  </table>
+
+
+
+        
+      </div>  <!--end starter -->
+
+       <p class="msg_head"><span class="hoover">TANDOORI DISHES</span> <span  class="hoover" style="float:right; margin-right:25px;">TANDOORI MASSALA DISHES</span></p>
+       
+       <div class="msg_body" style="height:290px;">
+       
+        <table width="300" border="0" cellspacing="0" style="line-height:19px; float:left; margin-left:15px;">
+        <tr>
+          <td width="250"><div align="center" class="style2">TANDOORI DISHES</div></td>
+          <td width="20">&nbsp;</td>
+          <td width="30">&nbsp;</td>
+         </tr>
+         <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr>
+          <td>Tandoori Chicken Whole</td>
+          <td>&pound;10.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Tandoori Chicken Whole"value="10.95" /></td>
+        </tr>
+        <tr>
+          <td>Tandoori Chicken Half </td>
+          <td>&nbsp;&nbsp;&pound;5.50</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Tandoori Chicken Half" value="5.50" /></td>
+        </tr>
+        <tr>
+          <td>Chicken Tikka/Lamb Tikka</td>
+          <td>&nbsp;&nbsp;&pound;5.95</td>
+           <td><input class="add_order" type="image"  src="image/btn-add.png" alt="Chicken Tikka/Lamb Tikka" value="5.95" /></td>
+        </tr>
+        
+       <tr>
+          <td>Tandoori King Prawn </td>
+          <td>&pound;10.95</td>
+          <td><input class="add_order" type="image" src="image/btn-add.png" alt="Tandoori King Prawn" value="10.95" /></td>
+        </tr>
+        <tr>
+          <td>Tandoori Mixed Grill</td>
+          <td>&nbsp;&nbsp;&pound;8.95</td>
+          <td><input class="add_order" type="image" src="image/btn-add.png" alt="Tandoori Mixed Grill" value="8.95" /></td>
+        </tr>
+        <tr>
+          <td>Shaslick (Chicken or Lamb) </td>
+          <td>&nbsp;&nbsp;&pound;6.95</td>
+          <td><input class="add_order" type="image" src="image/btn-add.png" alt="Shaslick(Ch/Lamb)" value="6.95" /></td>
+        </tr>
+      </table>
+      
+           
+       <table width="300" border="0" cellspacing="0" id="menu3" style="line-height:20px; float:right; margin-right:5px;">
+        <tr>
+          <td width="250" align="center"><div class="style2">TANDOORI MASSALA DISHES</div></td>
+          <td width="20">&nbsp;</td>
+           <td width="30">&nbsp;</td>
+        </tr>
+        <tr>
+         <td>&nbsp;</td> <td >&nbsp;</td> <td>&nbsp;</td>
+         </tr>
+        <tr>
+          <td>Tandoori Chicken Massala (on the bone)</td>
+          <td>&nbsp;&nbsp;&pound;5.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Tandoori Chicken Massala (on the bone)" value="5.95" /></td>
+        </tr>
+        <tr>
+          <td>Chicken Tikka Massala</td>
+          <td>&nbsp;&nbsp;&pound;5.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken Tikka Massala" value="5.95" /></td>
+        </tr>
+        <tr>
+          <td>Lamb Tikka Massala</td>
+          <td>&nbsp;&nbsp;&pound;5.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Lamb Tikka Massala" value="5.95" /></td>
+        </tr>
+        <tr>
+          <td>Tandoori King Prawn Massala</td>
+          <td>&pound;10.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Tandoori King Prawn Massala" value="10.95" /></td>
+        </tr>
+         <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+           <td>&nbsp;</td>
+             
+      </table>
+      
+     	 
+       </div>
+            
+  		<p class="msg_head"><span class="hoover">CHICKEN DISHES</span> <span  class="hoover" style="float:right; margin-right:25px;">MEAT DISHES</span></p>
+        
+        <div class="msg_body" style="height:380px;">
+        
+            <table width="300" border="0" cellspacing="0" id="menu4" style="line-height:20px; padding:0px; margin-left:5px; float:left;">
+              <tr>
+                <td width="250" align="center" class="style2">CHICKEN DISHES</td>
+                <td width="20">&nbsp;</td>
+                <td width="30">&nbsp;</td>
+              </tr>
+              <tr >
+                <td ><pre> All chicken off the bone</pre></td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>Chicken curry, medium</td>
+                <td>&pound;4.95</td>
+                <td><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken curyy, medium" value="4.95" /></td>
+              </tr>
+              <tr>
+                <td>Madras &amp; Vindaloo</td>
+                <td>&pound;4.95</td>
+                <td><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken Madras" value="4.95" /></td>
+              </tr>
+              <tr>
+                <td>Chicken Korma</td>
+                <td>&pound;5.25</td>
+                <td><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken Korma" value="5.25" /></td>
+              </tr>
+              <tr>
+                <td>Chicken and Mushroom</td>
+                <td>&pound;4.95</td>
+                <td><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken and Mushroom" value="4.95" /></td>
+              </tr>
+              <tr>
+                <td width="210">Chicken Roghan<</td>
+                <td valign="top">&pound;4.95</td>
+                <td valign="top"><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken Roghan" value="4.95" /></td>
+              </tr>
+               <tr>
+                <td>Chicken Dopiaza</td>
+                <td>&pound;4.95</td>
+                <td><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken Dopiaza" value="4.95" /></td>
+              </tr>
+              <tr>
+                <td>Chicken Bhuna</td>
+                <td>&pound;4.95</td>
+                <td><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken Bhuna" value="4.95" /></td>
+              </tr>
+              <tr>
+                <td width="210">Chicken Chilli Massala</td>
+                <td valign="top">&pound;5.95</td>
+                <td valign="top"><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken Chilli Massala" value="5.95" /></td>
+              </tr>
+              <tr>
+                <td width="210">Chicken Rezzalla</td>
+                <td valign="top">&pound;5.95</td>
+                <td valign="top"><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken Rezzala" value="5.95" /></td>
+              </tr>
+              
+            </table>
+            
+        <table width="270" border="0" cellspacing="0" id="menu5" style="line-height:20px; padding:0px; margin-right:0px; float:right;">
+        <tr>
+          <td width="220"><div style="margin-left:30px;" class="style2">MEAT&nbsp; DISHES</div></td>
+          <td width="20">&nbsp;</td>
+           <td width="30">&nbsp;</td>
+        </tr>
+        
+         <tr >
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+         </tr>
+        <tr>
+          <td>Meat  curry, medium</td>
+          <td>&pound;4.95</td>
+          <td><input class="add_order" type="image" src="image/btn-add.png" alt="Meat curry, medium" value="4.95" /></td>
+        </tr>
+        <tr>
+          <td>Madras &amp; Vindaloo</td>
+          <td>&pound;4.95</td>
+          <td><input class="add_order" type="image" src="image/btn-add.png" alt="Meat Madras" value="4.95" /></td>
+        </tr>
+        <tr>
+          <td>Meat Korma</td>
+          <td>&pound;5.25</td>
+          <td><input class="add_order" type="image" src="image/btn-add.png" alt="Meat Korma" value="5.25" /></td>
+        </tr>
+        <tr>
+          <td>Meat  and Mushroom</td>
+          <td>&pound;4.95</td>
+          <td><input class="add_order" type="image" src="image/btn-add.png" alt="Meat and Mushroom" value="4.95" /></td>
+        </tr>
+        <tr>
+          <td>Roghan Josh </td>
+          <td>&pound;4.95</td>
+          <td><input class="add_order" type="image" src="image/btn-add.png" alt="Roghan Josh" value="4.95" /></td>
+        </tr>
+       
+        <tr>
+          <td>Meat Bhuna</td>
+          <td>&pound;4.95</td>
+          <td><input class="add_order" type="image" src="image/btn-add.png" alt="Meat Bhuna" value="4.95" /></td>
+        </tr>
+        <tr>
+          <td>Meat Dopiaza</td>
+          <td>&pound;4.95</td>
+          <td><input class="add_order" type="image" src="image/btn-add.png" alt="Meat Dopiaza" value="4.95" /></td>
+        </tr>
+        <tr>
+          <td>Meat Sag</td>
+          <td>&pound;4.95</td>
+          <td><input class="add_order" type="image" src="image/btn-add.png" alt="Meat Sag" value="4.95" /></td>
+        </tr>
+        <tr>
+          <td>Methi Ghost</td>
+          <td>&pound;5.95</td>
+          <td><input class="add_order" type="image" src="image/btn-add.png" alt="Methi Ghost" value="5.95" /></td>
+        </tr>
+      </table>
+   
+           
+        
+        </div>
+		
+		 <p class="msg_head"><span class="hoover">BIRIANY</span> <span  class="hoover" style="float:right; margin-right:25px;"> PERSIAN DISHES </span></p>
+         
+         <div class="msg_body" style="height:350px;">
+         
+       <table width="300" border="0" cellspacing="0" style="line-height:19px; margin-left:5px; float:left;">
+        <tr>
+          <td align="center" width="250" class="style2">BIRIANI DISHES</td>
+          <td width="20">&nbsp;</td>
+          <td width="30">&nbsp;</td>
+        </tr>
+         <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr>
+          <td>Chicken or Meat Biriani</td>
+          <td>&pound;6.45</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken Biriany" value="6.45" /></td>
+        </tr>
+        <tr>
+          <td>Chicken Tikka Biriani</td>
+          <td>&pound;6.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken Tikka Biriany" value="6.95" /></td>
+        </tr>
+        <tr>
+          <td>Gorua Biriani</td>
+          <td>&pound;8.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Gorua Biriany" value="8.95" /></td>
+        </tr>
+        <tr>
+          <td>Prawn Biriani</td>
+          <td>&pound;6.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Prawn Biriany" value="6.95" /></td>
+        </tr>
+        <tr>
+          <td>King Prawn Biriani</td>
+          <td>&pound;8.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="King Prawn Birinay" value="8.95" /></td>
+        </tr>
+        <tr>
+          <td>Vegetabe or Mushroom Biriani</td>
+          <td>&pound;5.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Vegetable Biriany" value="5.95" /></td>
+        </tr>
+        <tr>
+          <td>Meat Mushroom Biriani</td>
+          <td>&pound;6.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Meat Mushroom Biriany" value="6.95" /></td>
+        </tr>
+        <tr>
+          <td>Prawn Mushroom Biriani</td>
+          <td>&pound;7.50</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Prawn Mushroom Biriany" value="7.50" /></td>
+        </tr>
+      </table>
+    
+    	 
+         <table width="300" border="0" cellpadding="0" cellspacing="0" style="line-height:20px; margin-right:10px; float:right;" >
+        <tr>
+          <td align="center" width="200" class="style2">PERSIAN DISHES</td>
+          <td width="20">&nbsp;</td>
+          <td width="30">&nbsp;</td>
+        </tr>
+        <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+       <tr>
+          <td width="275">Prawn Pathia</td>
+          <td>&pound;6.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Prawn pahtia" value="6.95" /></td>
+        </tr>
+        <tr>
+          <td>King Prawn Pathia</td>
+          <td>&pound;8.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="King Prawn Pathia" value="8.95" /></td>
+        </tr>
+        <tr>
+          <td>Chicken Dansak</td>
+          <td valign="top">&pound;6.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken Dansak" value="6.95" /></td>
+        </tr>
+        <tr>
+          <td>Meat Dansak</td>
+          <td>&pound;6.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Meat Dansak" value="6.95" /></td>
+        </tr>
+        <tr>
+          <td>Prawn Dansak</td>
+          <td>&pound;6.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Prawn Dansak" value="6.95" /></td>
+        </tr>
+        <tr>
+          <td>King Prawn Dansak</td>
+          <td>&pound;8.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="King Prawn Dansak" value="8.95" /></td>
+        </tr>
+        <tr>
+          <td>Chicken Tikka Dansak</td>
+          <td>&pound;7.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Chicken Tikka Dansak" value="7.95" /></td>
+        </tr>
+      </table>
+              
+        </div> 
+         
+             
+     
+         
+         <p class="msg_head"><span class="hoover">VEGETABLE SIDE DISHES</span> <span class="hoover" style="float:right; margin-right:25px;">SUNDRIES </span></p>
+         
+         <div class="msg_body" style="height:530px;">
+         
+         <table width="300" border="0" cellpadding="0" cellspacing="0" style="line-height:20px; margin-left:15px; float:left;">
+        <tr>
+          <td align="center" width="250" class="style2">VEGETABLE SIDE DISHES</td>
+          <td width="20">&nbsp;</td>
+           <td width="30">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+           <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>Mixed Vegetable Curry</td>
+          <td>&pound;2.75</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Mixed Vegetable Curry" value="2.75" /></td>
+        </tr>
+        <tr>
+          <td>Niramish</td>
+          <td>&pound;2.75</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Niramish" value="2.75" /></td>
+        </tr>
+        <tr>
+          <td>Mushroom Bhajee</td>
+          <td>&pound;2.75</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Mushroom Bhajee" value="2.75" /></td>
+        </tr>
+        <tr>
+          <td>Cauliflower Bhajee</td>
+          <td>&pound;2.75</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Cauliflower Bhajee" value="2.75" /></td>
+        </tr>
+        <tr>
+          <td>Bombay Potato</td>
+          <td>&pound;2.75</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Bombay Potato" value="2.75" /></td>
+        </tr>
+        <tr>
+          <td>Sag Bhajee</td>
+          <td>&pound;2.75</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Sag Bhajee" value="2.75" /></td>
+        </tr>
+        <tr>
+          <td>Sag Aloo</td>
+          <td>&pound;2.75</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Sag Aloo" value="2.75" /></td>
+        </tr>
+        <tr>
+          <td>Sag Ponir</td>
+          <td>&pound;2.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Sag Ponir" value="2.95" /></td>
+        </tr>
+        <tr>
+          <td>Bindi Bhajee</td>
+          <td>&pound;2.75</td>
+           <td><input class="add_order" type="image"  src="image/btn-add.png" alt="Bindi Bhajee" value="2.50" /></td>
+        </tr>
+        <tr>
+          <td>Brinjal Bhajee</td>
+          <td>&pound;2.75</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Brinjal Bhajee" value="2.75" /></td>
+        </tr>
+        <tr>
+          <td>Chana Massala</td>
+          <td>&pound;2.75</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Chana Massala" value="2.75" /></td>
+        </tr>
+        <tr>
+          <td>Aloo Peas Bhajee</td>
+          <td>&pound;2.75</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Aloo Peas Bhajee" value="2.75" /></td>
+        </tr>
+        <tr>
+          <td>Tarka Dal</td>
+          <td>&pound;2.75</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Tarka Dal" value="2.75" /></td>
+        </tr>
+        <tr>
+          <td>Aloo Gobi</td>
+          <td>&pound;2.75</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Aloo Gobi" value="2.75" /></td>
+        </tr>
+        <tr>
+          <td>Matter Ponir</td>
+          <td>&pound;2.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Matter Ponir" value="2.95" /></td>
+        </tr>
+      </table>
+      
+           
+      
+       <table width="300" border="0" cellpadding="0" cellspacing="0" style="line-height:18px; margin-right:15px; float:right;">
+        <tr>
+          <td  width="250" align="center" class="style2" >SUNDRIES</td>
+          <td width="20">&nbsp;</td>
+          <td width="30">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>Plain Rice</td>
+          <td>&pound;1.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Plain Rice" value="1.95" /></td>
+        </tr>
+        <tr>
+          <td>Pilau Rice</td>
+          <td>&pound;1.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Pilau Rice" value="1.95" /></td>
+        </tr>
+        <tr>
+          <td>Egg Fried Rice</td>
+          <td>&pound;2.50</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Egg Fried Rice" value="2.50" /></td>
+        </tr>
+        <tr>
+          <td>Special Fried Rice</td>
+          <td>&pound;2.50</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Special Fried Rice" value="2.50" /></td>
+        </tr>
+        <tr>
+          <td>Vegetable Rice</td>
+          <td>&pound;2.50</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Vegetable Rice" value="2.50" /></td>
+        </tr>
+        <tr>
+          <td>Mushroom Rice</td>
+          <td>&pound;2.50</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Mushroom Rice" value="2.50" /></td>
+        </tr>
+        <tr>
+          <td>Plain Nan</td>
+          <td>&pound;1.75</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Plain Nan" value="1.75" /></td>
+        </tr>
+        <tr>
+          <td>Vegetable Nan</td>
+          <td>&pound;1.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Vegetable Nan" value="1.95" /></td>
+        </tr>
+        <tr>
+          <td>Keema Nan</td>
+          <td>&pound;2.20</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Keema Nan" value="2.50" /></td>
+        </tr>
+       
+          <td>Garlic Nan</td>
+          <td>&pound;2.20</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Garlic Nan" value="2.50" /></td>
+        </tr>
+        <tr>
+          <td>Peshwari Nan</td>
+          <td>&pound;2.20</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Peshwari Nan" value="2.20" /></td>
+        </tr>
+        <tr>
+          <td>Paratha </td>
+          <td>&pound;1.75</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Paratha" value="1.75" /></td>
+        </tr>
+        
+        <tr>
+          <td>Chapati</td>
+          <td>&pound;0.95</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Chapati" value="0.95" /></td>
+        </tr>
+        <tr>
+          <td>Plain/Massala Papadom</td>
+          <td>&pound;0.40</td>
+           <td><input class="add_order" type="image"src="image/btn-add.png" alt="Papadom" value="0.40" /></td>
+        </tr>
+        <tr>
+          <td>Raitha (cucumber or onion)</td>
+          <td>&pound;1.30</td>
+           <td><input class="add_order" type="image" src="image/btn-add.png" alt="Raitha" value="1.30" /></td>
+        </tr>
+        
+      </table>
+      
+             
+         </div>
+         
+    </div>   <!--end menu -->
+ 
+  </div>  <!--end content container -->
+  
+ 
+ <div id="img-holder">
+ 
+ <img src="thumb/bombayaloo.png" /><img src="thumb/chbiriany.png" /><img src="thumb/samosa.png" /> <img src="thumb/chbhuna.png"/><img src="thumb/califlower.png" />
+ 
+ </div>
+ 
+ 
+  
+  </div><!-- content ends -->
+     
+        <div id="footer"> 
+         <div style="width:200px; float:left; margin-left:50px; padding:0px">© Taste of Raj</div>  
+	   	 <div style="float:right; margin-right:15px; width:200px; padding:0px"> Developed by Mizanur Rahman </div>  
+
+        </div>    
+        <!-- footer ends -->
+</div>  <!--end main -->
+
+ 
+</body>
+</html>

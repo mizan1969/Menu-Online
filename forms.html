@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>customer card info</title>
+
+ <script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+
+
+<style type="text/css">
+body { font:13px tahoma; height:2000px; }
+#background { position:fixed; width:100%; height:100% ; }
+/* customer info card  */
+#customer_info_card { 
+	position:absolute;
+	display:none;
+	width:850px;
+	padding:15px 15px 15px 50px;
+	background:#ccc;
+	z-index:100;
+	border-radius:10px;
+}
+#customer_info_card label { width:120px; float:left }
+#customer_info_card input[type=text] { width:230px; border-radius:5px; float:left; margin:0px 30px 10px 0px;}
+#customer_info_card input[class=name] { width:230px; border-radius:5px; float:left; margin:0px 30px 10px 0px;}
+#customer_info_card textarea { width:280px; height:50px ; float:left}
+.clear_both { clear:both }
+
+/* button close  */
+.button_close {
+	border-radius:7px;
+	border:2px outset #aaa;
+	width:80px;
+	height:20px;
+	text-align:center;
+	padding-top:8px;
+	float:right;
+	background:#bbb;
+	cursor:pointer;
+	position:relative;
+	top:0px;
+	font:bold 12px tahoma;
+
+}
+.button_close:hover { border:1px outset #aaa;}
+
+/* submit order  */
+#submit_order_card { 
+	width:100px; 
+	height:29px; 
+	text-align:center; 
+	width:172px; 
+	height:47px; 
+	padding:0px;
+	border:0px;
+	margin-left:300px;
+	cursor:pointer;
+	outline:none;
+	background:url(image/submit-button.png) top left no-repeat ;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(function() {
+  // checkout 
+  
+  $('#checkout').on('click',function(){
+  
+  
+	     // placing the form div center of a page
+			var window_width  = $(window).width();
+			var window_height = $(window).height();
+			
+			var obj_width = $("#customer_info_card").width();
+			var obj_height = $("#customer_info_card").height();
+			
+			left_position = (window_width  - obj_width)/2;
+			top_position  = (window_height - obj_height)/2;
+		
+	   // placing the div center of page on window resize	
+		$(window).resize(function(){
+		
+			var window_width  = $(window).width();
+			var window_height = $(window).height();
+			
+			var obj_width = $("#customer_info_card").width();
+			var obj_height = $("#customer_info_card").height();
+			
+			left_position = (window_width  - obj_width)/2;
+			top_position  = (window_height - obj_height)/2;
+			
+		   $("#customer_info_card").css("left",left_position).css("top",top_position).css("display","block");
+	  
+	  	}); // end window resize function
+		
+		$("#customer_info_card").css("left",left_position).css("top",top_position).css("display","block");
+		
+		$("#background").css({"z-index":"50","background-color":"#000","opacity":"0.8","display":"block"});
+	
+	
+  });
+
+// button_close for customer_info div
+    $('.button_close').on('click',function(){
+ 
+	 $(this).parent().css({"display":"none"});
+	 $("#background").css({"display":"none"});
+ 
+ });
+
+
+}); // end document
+
+</script>
+
+
+</head>
+
+<body>
+<form>
+	<input style="width:auto;position:relative; bottom:0px;" type="button" id="checkout" value="Checkout"  />
+</form>
+              
+<div id="background"></div>
+
+<!-- customer info card  -->
+<div id="customer_info_card">
+<div class="button_close">CLOSE</div>
+    <h2> Your details :</h2>
+    
+    <p> <label>First name: </label><input class="name" id="fname" type="text"  />
+    <label>Last name: </label><input class="name" id="lname" type="text"  /></p>
+    
+    <p> <label>Email: </label><input id="email" type="text"  />
+   <label> Contact No:</label> <input id="phone" type="text" title="please specify both mobile and home number"/></p>
+   
+    <p> <label>Address: </label><input id="address1" type="text"  />
+    <div class="clear_both"></div>
+
+     <label>&nbsp; </label><input id="address2" type="text"  /></p>
+	  <div class="clear_both"></div>
+  
+    <p><label>&nbsp;</label><span style="font-size:11px; float:left"> Minimum time: For collection 15 mins / For delivery 45 mins </span></p><br />
+
+     <p><label>collection/delivery time :</label> <input type="text" id="collection_time" value="3-15pm" disabled="disabled" />
+
+    <label> Comment :</label><textarea id="message" onclick="this.value=''" >if you have any alergy please specify here... </textarea></p>
+    
+    <div class="clear_both"></div>
+
+    <h2> Your card details:</h2>
+    
+ <p><label> Name on card:</label>    <input id="Name_card" type="text"  /></p>
+   
+
+   <p><label> Card number:</label>    <input id="card_no" type="text"  /></p>
+ 
+  <p><label> Card Type:</label>    <select style="float:left; margin-right:20px;" id="card_type" >
+  										<option>Visa debit</option>
+                                        <option>Master debit</option>
+                                        <option>Visa credit</option>
+                                        <option>Master Credit</option>
+                                    </select>
+         
+   
+   <label style="width:100px"> Start date:</label>  
+   								<select style="float:left; margin-right:10px;" id="start_date_month" >
+  										<option>Jan</option>
+                                        <option>Feb</option>
+                                        <option>Mar</option>
+                                        <option>May</option>
+                                         <option>Jun</option>
+                                         <option>Jul</option>
+                                        <option>Aug</option>
+                                        <option>Sep</option>
+                                        <option>Oct</option>
+                                         <option>Nov</option>
+                                         <option>Dec</option>
+                                    </select>  
+    
+    
+    
+    								<select style="float:left; margin-right:30px;" id="start_date_year" >
+  										<option>2008</option>
+                                        <option>2009</option>
+                                        <option>2010</option>
+                                        <option>2011</option>
+                                         <option>2012</option>
+                                    </select>
+  
+    
+    <label style="width:100px;"> Expiary date:</label> 
+    							 <select style="float:left; margin-right:10px;" id="exp_date_month" >
+  										<option>Jan</option>
+                                        <option>Feb</option>
+                                        <option>Mar</option>
+                                        <option>May</option>
+                                         <option>Jun</option>
+                                         <option>Jul</option>
+                                        <option>Aug</option>
+                                        <option>Sep</option>
+                                        <option>Oct</option>
+                                         <option>Nov</option>
+                                         <option>Dec</option>
+                                    </select>  
+    
+    
+    
+    								<select style="float:left" id="start_date_year" >
+  										<option>2013</option>
+                                        <option>2014</option>
+                                        <option>2015</option>
+                                        <option>2016</option>
+                                         <option>2017</option>
+                                         <option>2018</option>
+                                    </select>
+    </p>
+    
+        <div class="clear_both"></div>
+    
+     <p><label> Security code:</label>    <input style="width:80px;" id="sec_code" type="text"  />
+ 		<span> Last 3 digit of your security code no.</span>    
+     </p>
+    
+    <br />
+
+    <button id="submit_order_card"></button>
+
+</div>
+
+</body>
+</html>
